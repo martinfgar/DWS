@@ -10,14 +10,19 @@ class Centro{
 
 abstract class Espacio{
     public bool $wifi;
+    public int $puntosRed;
 }
 
 class Aula extends Espacio{
     public string $numero;
     private $ordenadores = [];
+    public bool $proyector;
+    public bool $pizarraDigital;
+    public bool $pantallaTactil;
     private $alumnos = [];
     public function getOrdenadores(){return $this->ordenadores;}
     public function addOrdenador(Ordenador $pc){($this->ordenadores)[] = $pc;}
+    public function addOrdenadores($ordenadores){array_merge($this->ordenadores,$ordenadores);}
     public function getAlumnos(){return $this->alumnos;}
     public function addAlumno(Alumno $alumno){($this->alumnos)[] = $alumno;}
 }
@@ -35,6 +40,7 @@ abstract class Persona{
     
     public string $dni;
     public string $nombre;
+    public string $email;
 
 }
 
@@ -44,11 +50,14 @@ class Docente extends Persona{
 
 class Alumno extends Persona{
     public string $codMatricula;
+    public string $ciclo;
 
 }
 
 class Ordenador{
-    public string $codigo;
+    public string $codigoHZ;
+    public string $OS;
+    public bool $esSobremesa;
 }
 
 ?>
