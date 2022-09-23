@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            font-weight: bold;
+        }
+        .contenedor{
+            width: fit-content;
+            float: left;
+            margin:1em;
+        }
+        .contenedor>* {
+            display: block;
+        }
+        .formulario{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Datos personales (Formulario)</h1>
+    <fieldset>
+        <legend>Formulario</legend>
+        <p>Escriba los datos siguientes:</p>
+        <form action="datos.php" method="post" class="formulario">
+            <div class="contenedor">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="">
+            </div>
+            <div class="contenedor">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" id="">
+            </div>
+            <div class="contenedor">
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" id="">
+            </div>
+            <div class="contenedor">
+                <label for="peso">Peso:</label>
+                <input type="number" name="peso" id="">
+            </div>
+            <div>
+                <label for="sexo">Sexo:</label>
+                <br>
+                <div style="float:left">
+                    <input  type="radio" name="sexo" id="hombre" value="hombre">
+                    <label for="hombre">Hombre</label>
+                </div>
+                <div style="float:left">
+                    <input type="radio" name="sexo" id="mujer" value="mujer">
+                    <label for="mujer">Mujer</label>
+                </div>
+                
+               
+                
+            </div>
+            <div>
+                <label for="estado">Estado Civil:</label>
+                <br>
+                <div style="float:left"><input type="radio" name="estado" id="soltero" value="Soltero">
+                    <label for="soltero">Soltero</label></div>
+                <div style="float:left"><input type="radio" name="estado" id="casado" value="Casado">
+                    <label for="casado">Casado</label></div>
+                <div style="float:left"><input type="radio" name="estado" id="otro" value="Otro">
+                    <label for="otro">Otro</label></div>
+                
+                
+                
+            </div>
+            <div>
+                <label for="">Aficiones:</label>
+                <input type="checkbox" name="aficion[]" id="Cine" value="cine">
+                <label for="Cine">Cine</label>
+                <input type="checkbox" name="aficion[]" id="" value="literatura">
+                <label for="Literatura">Literatura</label>
+                <input type="checkbox" name="aficion[]" id="Tebeos" value="tebeos">
+                <label for="Tebeos">Tebeos</label>
+                <input type="checkbox" name="aficion[]" id="Deporte" value="deporte">
+                <label for="Deporte">Deporte</label>
+                <input type="checkbox" name="aficion[]" id="Musica" value="musica">
+                <label for="Musica">Música</label>
+                <input type="checkbox" name="aficion[]" id="Television" value="television">
+                <label for="Television">Televisión</label>
+            </div>
+
+
+
+
+            <button type="submit">Enviar</button>
+        </form>
+    </fieldset>
+</body>
+
+</html>
