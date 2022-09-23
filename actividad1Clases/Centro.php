@@ -21,7 +21,10 @@ class Aula extends Espacio{
     public bool $pantallaTactil;
     private $alumnos = [];
     public function getOrdenadores(){return $this->ordenadores;}
-    public function addOrdenador(Ordenador $pc){($this->ordenadores)[] = $pc;}
+    public function addOrdenador(Ordenador $pc){
+        if (!$pc->esSobremesa || count(array_filter($this->ordenadores,fn($v) => $v->esSobremesa)) < $this->puntosRed)
+            ($this->ordenadores)[] = $pc;
+    }
     public function addOrdenadores($ordenadores){array_merge($this->ordenadores,$ordenadores);}
     public function getAlumnos(){return $this->alumnos;}
     public function addAlumno(Alumno $alumno){($this->alumnos)[] = $alumno;}
