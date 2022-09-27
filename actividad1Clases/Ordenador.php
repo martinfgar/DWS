@@ -1,5 +1,7 @@
 <?php
-class Ordenador{
+require_once 'Dependencias.php';
+
+class Ordenador implements Printable{
     private string $codigoHZ;
     private string $OS;
     private bool $esSobremesa;
@@ -64,5 +66,14 @@ class Ordenador{
         return $this;
     }
 
-    
+    public function imprimir(){
+        echo var_dump($this);
+        
+    }
+    public function imprimirHTML(){
+        echo "<table><thead><tr><td>CÓDIGO</td><td>OS</td><td>SOBREMESA</td></tr></thead><tbody>";
+        $sobremesa = $this->esSobremesa ? 'Sí' : 'No';
+        echo "<tr><td>{$this->codigoHZ}</td><td>{$this->OS}</td><td>{$sobremesa}</td></tr></tbody></table>";
+        
+    }
 }

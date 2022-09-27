@@ -1,4 +1,5 @@
 <?php
+require_once 'Dependencias.php';
 
 class Variado extends Espacio{
     private string $tipo;

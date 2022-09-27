@@ -1,5 +1,7 @@
 <?php
-abstract class Persona{
+require_once 'Dependencias.php';
+
+abstract class Persona implements Printable{
     
     private string $dni;
     private string $nombre;

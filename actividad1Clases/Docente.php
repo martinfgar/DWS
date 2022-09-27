@@ -1,4 +1,6 @@
 <?php
+require_once 'Dependencias.php';
+
 class Docente extends Persona{
     private float $sueldo;
         /**
@@ -19,5 +21,13 @@ class Docente extends Persona{
         $this->sueldo = $sueldo;
 
         return $this;
+    }
+    public function imprimir(){
+        echo var_dump($this);
+    }
+    public function imprimirHTML(){
+        echo "<table><thead><tr><td>DNI</td><td>EMAIL</td><td>NOMBRE</td><td>SUELDO</td></tr></thead><tbody>";
+        echo "<tr><td>{$this->getDni()}</td><td>{$this->getEmail()}</td><td>{$this->getNombre()}</td><td>{$this->sueldo}</td></tr></tbody></table>";
+        
     }
 }

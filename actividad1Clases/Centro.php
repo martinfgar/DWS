@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Dependencias.php';
+
 class Centro{
     private string $nombre;
     private string $codigo;

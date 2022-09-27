@@ -1,4 +1,7 @@
 <?php
+require_once 'Dependencias.php';
+
+
 class Aula extends Espacio{
     private string $numero;
     private $ordenadores = [];

@@ -1,5 +1,7 @@
 <?php
-abstract class Espacio{
+require_once 'Dependencias.php';
+
+abstract class Espacio {
     private bool $wifi;
     private int $puntosRed;
        /**

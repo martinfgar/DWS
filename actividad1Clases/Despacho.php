@@ -1,6 +1,7 @@
 <?php
+require_once 'Dependencias.php';
 
-class Despacho extends Espacio{
+class Despacho extends Espacio {
     private string $nombre;
     private Ordenador $ordenador;
     /**
