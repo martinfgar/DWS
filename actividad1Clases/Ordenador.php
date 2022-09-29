@@ -1,7 +1,7 @@
 <?php
 require_once 'Dependencias.php';
 
-class Ordenador implements Printable{
+class Ordenador implements Printable, \JsonSerializable{
     private string $codigoHZ;
     private string $OS;
     private bool $esSobremesa;
@@ -67,7 +67,7 @@ class Ordenador implements Printable{
     }
 
     public function imprimir(){
-        echo var_dump($this);
+        echo json_encode($this);
         
     }
     public function imprimirHTML(){
@@ -75,5 +75,18 @@ class Ordenador implements Printable{
         $sobremesa = $this->esSobremesa ? 'Sí' : 'No';
         echo "<tr><td>{$this->codigoHZ}</td><td>{$this->OS}</td><td>{$sobremesa}</td></tr></tbody></table>";
         
+    }
+    public static function createFromArray($array){
+        $pc = new Ordenador();
+        $pc->setCodigoHZ( $array['codigoHZ']);
+        $pc->setOS($array['OS']) ;
+        $pc->setEsSobremesa($array['esSobremesa']);
+        return $pc;
+    }
+    public function jsonSerialize()
+    {
+        $vars = get_object_vars($this);
+
+        return $vars;
     }
 }
