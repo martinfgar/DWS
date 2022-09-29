@@ -24,6 +24,12 @@
             display: flex;
             flex-direction: column;
         }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
