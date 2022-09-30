@@ -71,25 +71,21 @@
                 }
                 $ordenador = Ordenador::createFromArray($ordenador);
                 if (!$ordenadores[$ordenador->getCodigoHZ()]){
-                    $ordenadores[] = $ordenador;
+                    $ordenadores[$ordenador->getCodigoHZ()] = $ordenador;
                     file_put_contents("ordenadores.json", json_encode($ordenadores));
                 }else{
                     echo "<h3 style='color:red'>Ya existe ese código</h3>";
                 }
                 break;
             case 'delete':
-                $ordenadores = array_filter($ordenadores, function ($v){
-                    return ($v->getCodigoHZ() != $_POST['codigoHZ'] );
-                });
+                unset($ordenadores[$_POST['codigoHZ']]);
                 file_put_contents("ordenadores.json", json_encode($ordenadores));
                 break;
             case 'update':
-                array_walk($ordenadores, function ($v){
-                    if ($_POST['codigoHZ'] == $v->getCodigoHZ()){
-                        $v->setOS($_POST['OS']);
-                        $v->setEsSobremesa($_POST['esSobremesa']);
-                    }
-                });
+                if($ordenadores[$ordenador->getCodigoHZ()]){
+                    $ordenadores[$ordenador->getCodigoHZ()]->setOS($_POST['OS']);
+                    $ordenadores[$ordenador->getCodigoHZ()]->setEsSobremesa($_POST['esSobremesa']);
+                } 
                 file_put_contents("ordenadores.json", json_encode($ordenadores));
                 break;
         }
