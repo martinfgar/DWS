@@ -60,9 +60,9 @@
         $json = file_get_contents("ordenadores.json");
         $array =  json_decode($json);
         $ordenadores = [];
-        foreach($array as $pc){      
-            $ordenadores[] = Ordenador::createFromArray((array)$pc);
-        }
+        foreach($array as $pc){    
+            $ordenadores[$pc->codigoHZ] = Ordenador::createFromArray((array)$pc);
+        };
         switch($_POST['accion']){
             case 'save':
                 $ordenador = [];
@@ -70,11 +70,7 @@
                     $ordenador[$name] = $input; 
                 }
                 $ordenador = Ordenador::createFromArray($ordenador);
-                $previo = false;
-                foreach($ordenadores as $pc){
-                    $previo = ($pc->getCodigoHZ() == $ordenador->getCodigoHZ()) ? true : $previo;
-                }
-                if (!$previo){
+                if (!$ordenadores[$ordenador->getCodigoHZ()]){
                     $ordenadores[] = $ordenador;
                     file_put_contents("ordenadores.json", json_encode($ordenadores));
                 }else{
