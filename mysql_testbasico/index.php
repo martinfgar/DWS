@@ -6,24 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        th,td,table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 1em;
+        }
+        body > *{
+            margin:3em;
+        }
+    </style>
 </head>
 
 <body>
-    <form id="update" action="update_test.php" method="get"></form>
-    <form id="delete" action="delete_test.php" method="get"></form>
-    <form action="insert_test.php" method="get">
-        <label for="id">ID:</label>
-        <input type="number" name="id">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre">
-        <button type="submit">Insertar</button>
-    </form>
+    <fieldset>
+        <legend>Añadir</legend>
+        <form id="update" action="update_test.php" method="get"></form>
+        <form id="delete" action="delete_test.php" method="get"></form>
+        <form action="insert_test.php" method="get">
+            <div>
+                <label for="id">ID:</label>
+                <input type="number" name="id">
+            </div>
+            <div>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre">
+            </div>
+           
+            <button type="submit">Insertar</button>
+        </form>
+    </fieldset>
+    
     <table>
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Actualizar</th>
+                <th>Modificar</th>
                 <th>Eliminar</th>
             </tr>
         </thead>
