@@ -21,6 +21,9 @@
             margin:2em;
             border: 1px solid black;
         }
+        [hidden]{
+            display: none;
+        }
     </style>
 </head>
 
@@ -56,10 +59,13 @@
 
     }
     foreach ($alumno as $campo=>$valor){
-        echo '<div class="form-field">';
+        $ocultar = (isset($_GET['dni']) && $campo == 'dni') ? 'hidden' : 'false';
+        echo "<div class='form-field' {$ocultar}>";
         echo "<label for='{$campo}'>".strtoupper($campo)."</label>";
         echo "<input type='text' name='{$campo}' id='{$campo}' value= '{$valor}'>";
         echo "</div>";
+        
+
     }
     ?>
   
