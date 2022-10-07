@@ -59,7 +59,7 @@
 
     }
     foreach ($alumno as $campo=>$valor){
-        $ocultar = (isset($_GET['dni']) && $campo == 'dni') ? 'hidden' : 'false';
+        $ocultar = (isset($_GET['dni']) && $campo == 'dni') ? 'hidden' : '';
         echo "<div class='form-field' {$ocultar}>";
         echo "<label for='{$campo}'>".strtoupper($campo)."</label>";
         echo "<input type='text' name='{$campo}' id='{$campo}' value= '{$valor}'>";
