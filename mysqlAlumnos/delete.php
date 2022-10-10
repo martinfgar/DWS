@@ -1,5 +1,10 @@
 
 <?php
+session_start();
+if (!$_SESSION['authenticated']){
+    header("Location: index.php");
+}
+
 if (isset($_GET['dni'])) {
     $dni= $_GET['dni'];
 
@@ -24,11 +29,8 @@ if (isset($_GET['dni'])) {
     
     /* se recomienda el cierre explícito */
     $sentencia->close();
-    header("Location: index.php");
+    header("Location: control.php");
     exit;
-    /* Sentencia no preparada */
-   // $resultado = $mysqli->query("SELECT * FROM test");
-   // var_dump($resultado->fetch_all());
 }else{
     echo("<br>Error en parametros<br>");
     

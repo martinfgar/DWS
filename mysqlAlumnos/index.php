@@ -1,78 +1,64 @@
+</html>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        th,td,table{
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 1em;
-            text-align: center;
-            
-        }
-        body > *{
-            margin:3em;
-        }
-        a{
-            text-decoration: none;
-            color:inherit
-        }
-    </style>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./style.css">
+
 </head>
 
 <body>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>DNI</th>
-                <th>Nombre</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $mysqli = new mysqli("localhost", "root", "root", "centrofp");
-            if ($mysqli->connect_errno) {
-                echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    <form action="index.php" method="post" class="login-form">
+        <p class="login-text">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-lock fa-stack-1x"></i>
+            </span>
+        </p>
+        <input type="text" name="username" class="login-username" autofocus="true" required="true" placeholder="Erabiltzailea" />
+        <input type="password" name="password" class="login-password" required="true" placeholder="Pasahitza" />
+        <?php
+            if (isset($_POST['username']) && isset($_POST['password'])){
+                $mysqli = new mysqli("localhost", "root", "root", "centrofp");
+                if ($mysqli->connect_errno) {
+                    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+                }
+
+                //Test username and password => martin:root
+
+                $stmt = $mysqli->prepare("SELECT password FROM auth WHERE username=?");
+                $stmt->bind_param("s",$_POST['username']);
+                $stmt->execute();
+                $resultado = $stmt->get_result();
+                // mostrar resultado
+                while ($row = $resultado->fetch_assoc()) {
+                   $passwdHash = $row['password'];
+                }
+                /* se recomienda el cierre explícito */
+                $mysqli->close();
+                if (password_verify($_POST['password'], $passwdHash)){
+                    session_start();
+                    $_SESSION['authenticated'] = true;
+                    header("Location: control.php");
+                    exit;
+                }else{
+                    echo '<p style="color:red">usuario o contraseña incorrectos</p>';
+                }
             }
+            
+        ?>
+        <input type="submit" name="Login" value="Login" class="login-submit" />
+    </form>
 
-            /* Sentencia no preparada */
-            $resultado = $mysqli->query("SELECT dni,nombre FROM alumnos");
+    <a href="#" class="login-forgot-pass">forgot password?</a>
 
-            // mostrar resultado
-            while ($row = $resultado->fetch_assoc()) {
-               
-                echo "<tr>";
-                echo "<td>{$row["dni"]}</td>";
-                echo "<td>{$row["nombre"]}</td>";
-                echo "<td><a href='AlumnoForm.php?dni={$row["dni"]}'><span style='font-size:1.8em'>&#9999;</span></a></td>";
-                echo "<td><a href='delete.php?dni={$row["dni"]}'><span style='font-size:1.8em; color:red'>&#128465;</span></a></td>";
-                echo "</tr>";
-            }
+    <div class="underlay-photo"></div>
+    <div class="underlay-black"></div>
+    <!-- partial -->
 
-            /* se recomienda el cierre explícito */
-            $mysqli->close();
-
-            ?>
-            <tr>
-                <td colspan="4"><a href="AlumnoForm.php"><span>&#10133;</span></a></td>
-            </tr>
-        </tbody>
-
-
-    </table>
 </body>
 
 </html>
