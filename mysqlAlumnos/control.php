@@ -84,6 +84,7 @@
 
 
     </table>
+    <a href="logout.php" style="color:red;">Logout</a>
 </body>
 
 </html>
