@@ -20,12 +20,12 @@ if (isset($_POST['dni']) && isset($_POST['nombre'])) {
     }
     
     /* Sentencia preparada, etapa 1: preparación */
-    if (!($sentencia = $mysqli->prepare("INSERT INTO alumnos(dni,nombre,email,codmatricula,ciclo,dni_tutor) VALUES (?, ?, ?, ?, ?,?)"))) {
+    if (!($sentencia = $mysqli->prepare("INSERT INTO alumnos(dni,nombre,email,codmatricula,ciclo,dni_tutor) VALUES (?, ?, ?, ?, ?, ?)"))) {
         echo "Falló la preparación: (" . $mysqli->errno . ") " . $mysqli->error;
     }
     
     /* Sentencia preparada, etapa 2: vinculación y ejecución */
-    if (!$sentencia->bind_param("sssss", $dni, $nombre,$email,$codmatricula,$ciclo,$dni_tutor)) {
+    if (!$sentencia->bind_param("ssssss", $dni, $nombre,$email,$codmatricula,$ciclo,$dni_tutor)) {
         echo "Falló la vinculación de parámetros: (" . $sentencia->errno . ") " . $sentencia->error;
     }
     

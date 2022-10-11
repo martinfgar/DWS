@@ -22,7 +22,7 @@ if (isset($_POST['dni']) && isset($_POST['nombre'])) {
     }
     
     /* Sentencia preparada, etapa 2: vinculación y ejecución */
-    if (!$sentencia->bind_param("sssss", $nombre,$email,$codmatricula,$ciclo,$dni_tutor,$dni)) {
+    if (!$sentencia->bind_param("ssssss", $nombre,$email,$codmatricula,$ciclo,$dni_tutor,$dni)) {
         echo "Falló la vinculación de parámetros: (" . $sentencia->errno . ") " . $sentencia->error;
     }
     
@@ -30,13 +30,10 @@ if (isset($_POST['dni']) && isset($_POST['nombre'])) {
         echo "Falló la ejecución: (" . $sentencia->errno . ") " . $sentencia->error;
     }
     
-    /* se recomienda el cierre explícito */
     $sentencia->close();
     header("Location: control.php");
     exit;
-    /* Sentencia no preparada */
-//     $resultado = $mysqli->query("SELECT * FROM test");
-//     var_dump($resultado->fetch_all());
+
 }else{
     echo("<br>Error en parametros<br>");
     
