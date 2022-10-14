@@ -51,4 +51,15 @@ class Usuario extends Model{
         $stmt->execute();
         $stmt->close();
     }
+
+    /*
+        Funcion para eliminar
+    */
+    public function delete(){
+        $conn = Self::getConexion();
+        $tabla = self::$tabla;
+        $query = "select * from {$tabla} where username='{$this->username}'";
+        $resultado = $conn->query($query);
+        $resultado->close();
+    }
 }

@@ -5,13 +5,14 @@
 	<title>Lista de usuarios</title>
 </head>
 	<body>
-		<a href="../Controllers/CrudController.php?action=insert">Insertar usuario</a>
+		<a href="GetController.php?action=insert">Insertar usuario</a>
    		<table>
    			<thead>
    				<tr>
    					<td>Usuarios</td>
    					<td>Constraseña</td>
    					<td>Nombre real</td>
+					<td>ELiminar</td>
    				</tr>
    			</thead>
    			<tbody>
@@ -21,6 +22,7 @@
    			    echo "<td>" . $usuario->username . "</td>";
    			    echo "<td>" . $usuario->password . "</td>";
    			    echo "<td>" . $usuario->name . "</td>";
+				echo "<td><a href='GetController.php?action=delete?username={$usuario->username}'>Eliminar</a></td>";
    			    echo "</tr>";
    			}
    			

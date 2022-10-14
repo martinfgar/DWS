@@ -1,4 +1,4 @@
 <?php
-require 'Controllers/CrudController.php';
+require 'GetController.php';
 
 ?>

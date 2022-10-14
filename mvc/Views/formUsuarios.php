@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <form action="../Controllers/CrudController.php" method="post">
+    <form action="PostController.php" method="post">
         <input type="text" name="username" placeholder="username">
         <input type="text" name="name" placeholder="name">
         <input type="text" name="password" placeholder="password">
-        <input type="submit" value="Guardar">
+        <input type="submit" value="insert" name="action">
     </form>
 </body>
 
